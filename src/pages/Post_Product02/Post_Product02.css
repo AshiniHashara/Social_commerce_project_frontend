@@ -1,0 +1,30 @@
+.select-subcategory {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .subcategories-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .subcategory-item {
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .subcategory-item:hover {
+    background: #ddd;
+  }
+  .image{
+    width: 250px;
+    height: 250px;
+  }
+  .navigate-buttons{
+    gap: 300px;
+  }

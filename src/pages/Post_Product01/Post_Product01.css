@@ -1,0 +1,24 @@
+.select-categories-container {
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.select-category-item {
+    text-align: center;
+}
+
+.select-category-image {
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 3px solid #ddd; 
+    transition: transform 0.3s ease-in-out;
+}
+
+.select-category-image:hover {
+    transform: scale(1.1); 
+}

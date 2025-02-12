@@ -1,0 +1,40 @@
+.product_name{
+    text-align: center;
+    padding: 20px ;
+}
+.inputname{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 40%;
+    height: 30px;
+    border-radius: 10px;
+}
+.back-next-buttons{
+    gap: 50px;
+    color: beige;
+}
+.back-next-buttons button{
+    gap: 50px;
+    margin-top: 30px;
+    margin-right: 70px;
+    margin-left: 70px;
+    
+}
+.back {
+    background-color: #E1FFBB;
+    color: none;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 5px;
+    gap: 5px;
+    width: 100px;
+}
+.next {
+    background-color: #E1FFBB;
+    color: none;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 5px;
+    gap: 5px;
+    width: 100px;
+}
