@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // Get category from URL
+import { useNavigate, useParams } from "react-router-dom"; 
 import "./Post_Product02.css";
 import Navbar from "../../components/Navbar/Navbar";
 import post02 from '../../components/Assets/post02.svg'
 
 
 
-// Define subcategories based on selected category
+
 const subcategories = {
   Jewellery: ["Necklace", "Ring", "Earrings", "Bracelets"],
   Women: ["Frock", "Denim", "T-Shirt", "Skirt"],
@@ -20,7 +20,7 @@ const subcategories = {
 };
 
 const Post_Product02 = () => {
-  const { category } = useParams(); // Get category from URL
+  const { category } = useParams(); 
   const navigate = useNavigate();
 
   const [selectedCategory, setSelectedCategory] = useState(category|| "");
