@@ -4,6 +4,7 @@ import "./Post_Product07.css"
 import Navbar from '../../components/Navbar/Navbar';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 
 const Post_Product07 = () => {
     const navigate = useNavigate();
@@ -29,6 +30,58 @@ const [storedDescription, setStoredDescription] = useState(() => {
     const images = JSON.parse(localStorage.getItem("uploadedImages")) || [];
     setStoredImages(images);
   }, []);
+
+  const handleSubmit = async () => {
+  try {
+    
+    const productData = {
+      name: storedName,
+      category_id: storedCategory,
+      subcategory_id: storedSubCategory,
+      description: storedDescription,
+      price: storedPrice,
+      available: true,
+      quantity: 100,
+      releaseDate: new Date().toISOString()
+    };
+
+    
+    const productResponse = await axios.post("http://localhost:8080/api/product", productData);
+    const productId = productResponse.data.id; 
+
+    console.log("Product created with ID:", productId);
+
+    
+    for (let base64Image of storedImages) {
+      const blob = await fetch(base64Image).then(res => res.blob());
+      const formData = new FormData();
+      formData.append("image", blob, "image.png");
+      formData.append("productId", productId);
+
+      await axios.post("http://localhost:8080/api/image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+    }
+
+    alert("Product and images uploaded successfully!");
+    navigate("/home"); 
+
+  } catch (error) {
+  console.error("Upload error:", error);
+
+  if (error.response && error.response.data) {
+  const message = typeof error.response.data === "string"
+    ? error.response.data
+    : JSON.stringify(error.response.data);
+  alert("Failed to upload product: " + message);
+}
+
+}
+
+};
+
 
   return (
     <>
@@ -79,7 +132,8 @@ const [storedDescription, setStoredDescription] = useState(() => {
             <button className="edit-button" onClick={()=> navigate("/post04")}>Edit</button>
         </div>
       </div>
-      <Button className='submit' value="Submit" onClick={()=> navigate("/post05")}/>
+      <Button className='submit' value="Submit" onClick={handleSubmit} />
+
     </div>
     
     </>

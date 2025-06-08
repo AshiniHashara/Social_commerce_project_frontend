@@ -1,0 +1,109 @@
+.containers {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+.right-column {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.product-description {
+  margin-bottom: 2rem;
+}
+
+.product-description span {
+  font-size: 14px;
+  color: #888;
+}
+
+.product-description h1 {
+  font-size: 28px;
+  margin: 10px 0;
+  color: #222;
+}
+
+.product-description h5 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.product-description p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.product-price {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.product-price span {
+  font-size: 24px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.cart-btn {
+  display: inline-block;
+  margin-left: 1rem;
+  padding: 10px 20px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-btn:hover {
+  background-color: #219150;
+}
+
+.disabled-btn {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.product-price h6 {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.release-date {
+  margin-top: 10px;
+}
+
+.release-date h6 {
+  font-size: 14px;
+  margin: 0;
+  color: #666;
+}
+
+.release-date i {
+  font-size: 14px;
+  color: #333;
+}
+
+.update-button {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.update-button .btn {
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+}

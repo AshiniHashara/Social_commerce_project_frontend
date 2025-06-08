@@ -2,6 +2,7 @@ import React from 'react'
 import "./Category.css"
 import { category_list } from '../Assets/assets'
 import Navbar from '../Navbar/Navbar'
+import ProductList from '../ProductList/ProductList'
 const Category = () => {
   return (
     <div>
@@ -16,6 +17,7 @@ const Category = () => {
             )
         })}
     </div>
+    <ProductList/>
     </div>
   )
 }
