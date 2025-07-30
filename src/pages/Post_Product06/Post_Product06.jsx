@@ -4,6 +4,7 @@ import "./Post_Product06.css";
 import Navbar from '../../components/Navbar/Navbar';
 import Button from '../../components/Button/Button'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 const Post_Product06 = () => {
      const navigate = useNavigate();
@@ -30,6 +31,15 @@ const Post_Product06 = () => {
   };
 
   const handleNext = () => {
+
+    const imageCount = selectedImages.filter((img) => img !== null).length;
+
+  if (imageCount < 2) {
+    Swal.fire("Please upload at least 2 images before proceeding.");
+    return;
+  }
+
+
    // localStorage.setItem("uploadedImages", JSON.stringify(selectedImages)); 
     navigate("/post07"); 
   };

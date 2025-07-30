@@ -10,10 +10,19 @@ const Post_Product05 = () => {
     const[ productPrice, setProductPrice] =useState("");
     const navigate = useNavigate();
     const handleNext = () => {
-        if(productPrice.trim()===""){
-            Swal.fire("Please Enter Product Price");
-            return;
-        }
+       const trimmedPrice = productPrice.trim();
+
+  if (!trimmedPrice) {
+    Swal.fire("Please enter the product price.");
+    return;
+  }
+
+  const priceValue = parseFloat(trimmedPrice);
+
+  if (isNaN(priceValue) || priceValue <= 0) {
+    Swal.fire("Please enter a valid price greater than 0.");
+    return;
+  }
         localStorage.setItem("ProductPrice",productPrice);
         navigate("/post06")
     };

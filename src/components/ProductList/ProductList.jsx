@@ -3,10 +3,13 @@ import axios from "axios";
 import "./ProductList.css";
 import Carousel from '../../components/Carousel/Carousel';
 <img src="data:image/png;base64,..." alt="Bluetooth Headphones" />
+import { useNavigate } from "react-router-dom";
 
 
 const ProductList = () => {
- const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/product/image")
@@ -20,39 +23,25 @@ const ProductList = () => {
 
   return (
    <div className="product-grid">
-  {products.map((product) => (
-    <div key={product.id} className="product-card">
-      {/* <img src="http://localhost:8080/api/image/5"/> */}
-        {/* <img src={`http://localhost:8080/api/image/${product.imageID}`}/> */}
-    {product.imageID && product.imageID.length > 0 && (
-            <Carousel
-              showThumbs={false}
-              infiniteLoop
-              showStatus={false}
-              autoPlay
-              interval={3000}
-              className="product-carousel"
-            >
-              {product.imageID.map((id) => (
-                <div key={id}>
-                  <img
-                    className="product-image"
-                    src={`http://localhost:8080/api/image/${id}`}
-                    alt={product.name}
-                  />
-                </div>
-              ))}
-            </Carousel>
-          )}
-      <div className="product-details">
-  <div className="product-text">
-    <h3>{product.name}</h3>
-    <p>{product.subcategory}</p>
-  </div>
-  <p className="price">${product.price}</p>
-</div>
+      {products.map((product) => (
+        <div key={product.id} className="product-card">
+        {product.imageID && product.imageID.length > 0 && (
+      <img
+        className="product-image"
+        src={`http://localhost:8080/api/image/${product.imageID[0]}`}
+        alt={product.name}
+      />
+    )}
 
-      <button>Share</button>
+        <div className="product-details">
+          <div className="product-text">
+              <h3>{product.name}</h3>
+              <p>{product.subcategory}</p>
+          </div>
+          <p className="price">${product.price}</p>
+  </div>
+
+     <button onClick={() => navigate(`/share/${product.id}`)}>Share</button>
     </div>
   ))}
   

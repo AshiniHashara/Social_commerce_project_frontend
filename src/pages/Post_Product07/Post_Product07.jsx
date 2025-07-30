@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 const Post_Product07 = () => {
     const navigate = useNavigate();
@@ -64,8 +65,12 @@ const [storedDescription, setStoredDescription] = useState(() => {
         }
       });
     }
-
-    alert("Product and images uploaded successfully!");
+Swal.fire({
+  title: "Product and images uploaded successfully!",
+  icon: "success",
+  draggable: true
+});
+    //alert("Product and images uploaded successfully!");
     navigate("/home"); 
 
   } catch (error) {
