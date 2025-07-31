@@ -4,10 +4,14 @@ import "./ProductList.css";
 import Carousel from '../../components/Carousel/Carousel';
 <img src="data:image/png;base64,..." alt="Bluetooth Headphones" />
 import { useNavigate } from "react-router-dom";
+import Pagination from "../Pagination/Pagination";
 
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage,setPostsPerPage] = useState(8);
 
   const navigate = useNavigate();
 
@@ -21,9 +25,13 @@ const ProductList = () => {
       });
   }, []);
 
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = products.slice(firstPostIndex,lastPostIndex)
+
   return (
    <div className="product-grid">
-      {products.map((product) => (
+      {currentPosts.map((product) => (
         <div key={product.id} className="product-card">
         {product.imageID && product.imageID.length > 0 && (
       <img
@@ -39,12 +47,18 @@ const ProductList = () => {
               <p>{product.subcategory}</p>
           </div>
           <p className="price">${product.price}</p>
+
+       
   </div>
 
      <button onClick={() => navigate(`/share/${product.id}`)}>Share</button>
     </div>
   ))}
-  
+   <Pagination 
+   totalPosts={products.length}
+   postsPerPage={postsPerPage}
+   setCurrentPage={setCurrentPage}
+   currentPage={currentPage}/>
 </div>
 
   );
