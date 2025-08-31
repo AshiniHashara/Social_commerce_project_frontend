@@ -1,0 +1,93 @@
+.login-container{
+     display: flex;
+    justify-content: center; /* horizontal centering */
+    align-items: center;     /* vertical centering */
+    height: 100vh;   
+}
+
+/* .inputname{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 40%;
+    height: 30px;
+    border-radius: 10px;
+} */
+
+.form-group {
+  display: flex;          /* make it flex */
+  flex-direction: column; /* stack children vertically */
+  gap: 0.5rem;            /* space between label & input */
+  margin-top: 30px;
+  font-family: Arial, sans-serif;
+  align-items: flex-start;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-control {
+   width: 320px;
+  height: 48px;
+    color: #3c4043;
+  border-radius: 12px;
+  padding-left: 5px;
+  border: 1px solid #000;
+  
+}
+.form-check{
+    display: flex;
+    margin: 15px;
+}
+
+.external-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 320px;
+  height: 48px;
+
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+
+  background-color: white;
+  color: #3c4043;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  margin: 15px;
+}
+
+.external-btn:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.external-btn:active {
+  transform: scale(0.98);
+}
+
+.external-icon {
+  width: 20px;
+  height: 20px;
+}
+.btn-signin{
+     width: 320px;
+  height: 48px;
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+color: #dadce0;
+  background-color: #001A6E;
+  margin-top: 15px;
+}
+.image-login {
+  width: 600px;
+  height: 600px;
+  padding: 15px;
+}
+
+

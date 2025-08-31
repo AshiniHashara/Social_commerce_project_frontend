@@ -6,7 +6,7 @@ import ProductList from '../ProductList/ProductList'
 const Category = () => {
   return (
     <div>
-        <Navbar/>
+        
     <div className='categories-container' id='explore-category'>
         {category_list.map((item,index)=>{
             return (
@@ -17,7 +17,7 @@ const Category = () => {
             )
         })}
     </div>
-    <ProductList/>
+    
     </div>
   )
 }

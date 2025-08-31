@@ -11,6 +11,9 @@ import Post_Product07 from "./pages/Post_Product07/Post_Product07"
 import WhatsApp from "./pages/WhatsApp/WhatsApp"
 import Product_Share from "./pages/Product_Share/Product_Share"
 import Product_Share_Display from "./pages/Product_Share_Display/Product_Share_Display"
+import Home_Page from "./pages/Home_Page/Home_Page"
+import Login_Page from "./pages/Login_Page/Login_Page"
+import SignUp from "./pages/SignUp_Page/SignUp"
 function App() {
  
 
@@ -18,7 +21,9 @@ function App() {
     <>
      <BrowserRouter>
           <Routes>
-            <Route path="/home" element={<Category/>}/>
+            <Route path="/login" element={<Login_Page/>}/>
+            <Route path="/signup" element={<SignUp/>}/>
+            <Route path="/home" element={<Home_Page/>}/>
             <Route path="/post01" element={<Post_Product01/>}/>
             <Route path="/post02/:category" element={<Post_Product02/>} />
             <Route path="/post03" element={<Post_Product03/>}/>
