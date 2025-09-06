@@ -1,19 +1,48 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ProductList.css";
-import Carousel from '../../components/Carousel/Carousel';
 <img src="data:image/png;base64,..." alt="Bluetooth Headphones" />
 import { useNavigate } from "react-router-dom";
 import Pagination from "../Pagination/Pagination";
+import { jwtDecode } from "jwt-decode";
+
 
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage,setPostsPerPage] = useState(8);
 
   const navigate = useNavigate();
+  
+  //both wholeseller and retailer can share product but want to log in
+const handleShare = (id) => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  if (!accessToken) {
+    alert("Please log in to share this product.");
+    navigate("/login");
+    return;
+  }
+
+  try {
+    const decoded = jwtDecode(accessToken);
+    console.log(decoded.Roles); 
+    const roles = decoded.Roles || [];
+
+    // allow only wholeseller or retailer
+    if (roles.includes("WHOLESELLER") || roles.includes("RETAILER")) {
+      navigate(`/share/${id}`);
+    } else {
+      alert("You do not have permission to share this product.");
+    }
+  } catch (err) {
+    console.error("Error decoding token:", err);
+    alert("Invalid token, please log in again.");
+    navigate("/login");
+  }
+};
+
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/product/image")
@@ -51,7 +80,8 @@ const ProductList = () => {
        
   </div>
 
-     <button onClick={() => navigate(`/share/${product.id}`)}>Share</button>
+    <button onClick={() => handleShare(product.id)}>Share</button>
+
     </div>
   ))}
    <Pagination 

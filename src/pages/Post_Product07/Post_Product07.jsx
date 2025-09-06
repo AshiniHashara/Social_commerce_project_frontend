@@ -34,7 +34,12 @@ const [storedDescription, setStoredDescription] = useState(() => {
 
   const handleSubmit = async () => {
   try {
-    
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      alert("Please log in first!");
+      return;
+    }
+
     const productData = {
       name: storedName,
       category_id: storedCategory,
@@ -47,7 +52,13 @@ const [storedDescription, setStoredDescription] = useState(() => {
     };
 
     
-    const productResponse = await axios.post("http://localhost:8080/api/product", productData);
+    const productResponse = await axios.post("http://localhost:8080/api/product", productData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     const productId = productResponse.data.id; 
 
     console.log("Product created with ID:", productId);

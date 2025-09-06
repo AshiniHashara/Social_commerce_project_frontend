@@ -150,3 +150,22 @@
   border-radius: 10px;
   object-fit: cover;
 }
+.buy-button {
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 5px;
+}
+
+.buy-button {
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 5px;
+}
+.add-button {
+  width: 150px;
+  height: 40px;
+  border-radius: 20px;
+}
+

@@ -1,17 +1,37 @@
 import React from 'react'
 import Button from '../Button/Button'
 import "./Cart.css"
+import { jwtDecode } from "jwt-decode"; 
 
 const Cart = ({img,description,className, value, onClick}) => {
-  const role = localStorage.getItem("role");
 
   const handleClick = () => {
-    if (role !== "WHOLESELLER") {
-      alert("Please log in as a wholeseller to access this feature.");
-      return;
-    }
-    onClick(); // call original function if role matches
-  }
+    const accessToken = localStorage.getItem("accessToken");
+    
+      if (!accessToken) {
+        alert("Please log in as wholeseller to post  this product.");
+        navigate("/login");
+        return;
+      }
+    
+      try {
+        const decoded = jwtDecode(accessToken);
+        console.log(decoded.Roles); 
+        const role = decoded.Roles;
+
+      // allow only wholeseller
+      if (role === "WHOLESELLER") {
+        onClick();
+      } else {
+        alert("You do not have permission to post product.");
+      }
+      } catch (err) {
+        console.error("Error decoding token:", err);
+        alert("Invalid token, please log in again.");
+        navigate("/login");
+      }
+    };
+    
 
   return (
     <div className="cart-container">

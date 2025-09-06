@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import signup from '../../components/Assets/SignUp.svg';
 import axios from 'axios';
 import "./SignUp.css";
+import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -16,15 +18,28 @@ const SignUp = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:8080/Register", formData);
-      alert("User registered successfully!");
+      Swal.fire({
+            icon: "success",
+            title: "Registration Successful",
+            text: "Please Log in!",
+            timer: 2000,
+            showConfirmButton: false
+          });
       console.log(res.data);
+      navigate("/login")
     } catch (err) {
       console.error(err);
-      alert("Registration failed");
+      Swal.fire({
+           icon: "error",
+           title: "Registration Failed",
+           text: "Please check your details."
+         });
     }
   };
 

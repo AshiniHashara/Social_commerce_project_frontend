@@ -5,13 +5,18 @@ import Carousel from '../../components/Carousel/Carousel';
 import "./Product_Share_Display.css"
 import { useLocation } from "react-router-dom";
 import WhatsAppSender from "../../components/WhatsAppSender/WhatsAppSender";
+import Button from "../../components/Button/Button";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Product_Share = () => {
   // const { id } = useParams();
   const { id: encodedProductId, retailerId: encodedRetailerId } = useParams();
   const [product, setProduct] = useState(null);
   const location = useLocation();
-  const { totalPrice } = location.state || {};
+  //const { totalPrice } = location.state || {};
+  const [username, setUsername] = useState(null);
+
+  const totalPrice = localStorage.getItem("totalPrice");
 
   // ✅ Decode them safely
   const productId = atob(encodedProductId);
@@ -23,6 +28,14 @@ const Product_Share = () => {
 
   const [categories, setCategories] = useState([]);
 const [subCategoryName, setSubCategoryName] = useState("");
+
+useEffect(() => {
+        // Check if user info is in localStorage
+        const storedUser = localStorage.getItem("username");
+        if (storedUser) {
+            setUsername(storedUser);
+        }
+    }, []);
 
 useEffect(() => {
   // Fetch all categories once
@@ -59,20 +72,6 @@ useEffect(() => {
   fetchProduct();
 }, [productId, categories]);
 
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:8080/api/product/image/${productId}`);
-  //       setProduct(response.data);
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching product:", error);
-  //     }
-  //   };
-
-  //   fetchProduct();
-  // }, [productId]);
-
   if (!product) {
     return (
       <h2 className="text-center" style={{ padding: "10rem" }}>
@@ -82,6 +81,7 @@ useEffect(() => {
   }
   return (
     <>
+    <Navbar/>
       <div className="containers">
   <div className="product-content-wrapper">
     
@@ -120,25 +120,21 @@ useEffect(() => {
 
       <div className="product-price">
         <span>{"$" + totalPrice}</span>
-        <button
-          className={`cart-btn ${!product.available ? "disabled-btn" : ""}`}
-          disabled={!product.available}
-        >
-          {product.available ? "Add to cart" : "Out of Stock"}
-        </button>
-        <h6>
-          Stock Available:{" "}
-          <i style={{ color: "green", fontWeight: "bold" }}>{product.quantity}</i>
-        </h6>
-        <p className="release-date">
-          <h6>Product listed on:</h6>
-          <i>{product.release_date}</i>
-        </p>
       </div>
 
+<div className='buttons'>
+                {username ? (
       <div className="update-button">
         <WhatsAppSender shareUrl={urlToShare} />
       </div>
+  ) : (
+      <>
+          <Button className="buy-button" value="Buy Product" />
+          <Button className="add-button" value="Add To Cart" />
+      </>
+  )}
+</div>
+
     </div>
   </div>
 </div>

@@ -5,6 +5,9 @@ import Carousel from '../../components/Carousel/Carousel';
 import "./Product_Share.css"
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'; 
+import Navbar from "../../components/Navbar/Navbar";
+import { jwtDecode } from "jwt-decode";
+
 
 
 const Product_Share = () => {
@@ -73,12 +76,36 @@ useEffect(() => {
     return;
   }
   try {
-    const response = await axios.post("http://localhost:8080/api/retailer", {
-      margin: parseFloat(margin),
-      product: {
-        id: product.id,
-      },
-    });
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      Swal.fire("Error", "Please log in first!", "error");
+      return;
+    }
+
+    // ✅ Decode token and check role
+    const decoded = jwtDecode(token);
+    const role = decoded.Roles;
+    console.log("Decoded token:", decoded);
+    console.log("role:", role);
+
+    if (role !== "WHOLESELLER" && role !== "RETAILER") {
+      Swal.fire("Access Denied", "You don’t have permission.", "error");
+      return;
+    }
+   const response = await axios.post(
+  "http://localhost:8080/api/retailer/margin",
+  {
+    margin: parseFloat(margin),
+    product: { id: product.id },
+  },
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
+
     console.log("Margin saved:", response.data);
     Swal.fire({
         title: "Margin Added!",
@@ -95,6 +122,7 @@ useEffect(() => {
 
     // Navigate to new page with product name and total price
     const totalPrice = parseFloat(product.price) + parseFloat(margin);
+    localStorage.setItem("totalPrice",totalPrice);
     navigate((`/product/${encodedProductId}/${encodedRetailerId}`), {
       state: {
         totalPrice: totalPrice,
@@ -116,6 +144,7 @@ useEffect(() => {
 
   return (
     <>
+    <Navbar/>
       <div className="product-add-margin-container">
   <div className="product-margin-content">
 

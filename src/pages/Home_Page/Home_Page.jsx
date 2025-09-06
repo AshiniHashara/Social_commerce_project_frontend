@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import Category from '../../components/Category/Category'
 import ProductList from '../../components/ProductList/ProductList'
 import Cart from '../../components/Cart/Cart'
-//import image1 from '../../../../Assets/Emails-bro.png'
+import ShareCart from '../../components/ShareCart/ShareCart'
 import Button from '../../components/Button/Button'
 import image1 from '../../components/Assets/Emails-bro.png';
 import image2 from '../../components/Assets/Refer a friend-bro.png'
@@ -37,8 +37,8 @@ const Home_Page = () => {
             onClick={()=> navigate("/post01")}
         />
 
-        <Cart
-            className="share"
+        <ShareCart
+        className="share"
             description="Start Selling Smarter
             Discover trending wholesale deals, set your profit margin, and share your unique link across social media.
             With FlipBiz, every share is a sale waiting to happen.

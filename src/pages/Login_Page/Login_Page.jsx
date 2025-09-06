@@ -19,20 +19,24 @@ const Login_Page = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:8080/login", loginData);
-      const { accessToken, refreshToken } = res.data;
+      const { accessToken, refreshToken, username, role } = res.data;
 
     // Save tokens to localStorage
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
+    localStorage.setItem("username", username);
 
     // Display in console
     console.log("Access Token:", accessToken);
     console.log("Refresh Token:", refreshToken);
+        console.log("User Name:", username);
+    console.log("Role:", role);
+      
 
-     localStorage.setItem("role", res.data.role);
+     localStorage.setItem("role", role);
 
-     navigate("/post01");   // this will run immediately
-    console.log("hello");
+     navigate("/home");   
+    
 
     Swal.fire({
       icon: "success",

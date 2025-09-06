@@ -1,0 +1,44 @@
+.cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap; 
+}
+
+.cart-image {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+}
+
+.cart-content {
+  max-width: 400px;
+  text-align: left;
+}
+
+.cart-description {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.post{
+    background-color: #E1FFBB;
+    color: none;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 5px;
+    gap: 5px;
+    width: 175px;
+}
+.share{
+    background-color: #E1FFBB;
+    color: none;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 5px;
+    gap: 5px;
+    width: 175px;
+}
