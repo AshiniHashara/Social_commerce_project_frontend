@@ -9,7 +9,11 @@ import Swal from 'sweetalert2';
 const Post_Product06 = () => {
      const navigate = useNavigate();
  
-  const [selectedImages, setSelectedImages] = useState(Array(5).fill(null));
+  const [selectedImages, setSelectedImages] = useState(() => {
+    const saved = localStorage.getItem("uploadedImages");
+    return saved ? JSON.parse(saved) : Array(5).fill(null);
+  });
+
 
   
   const handleImageChange = (event, index) => {

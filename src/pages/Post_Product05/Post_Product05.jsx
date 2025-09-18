@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 const Post_Product05 = () => {
-    const[ productPrice, setProductPrice] =useState("");
+    const[ productPrice, setProductPrice] =useState(() => {
+            return localStorage.getItem("ProductPrice") || "";
+        });
     const navigate = useNavigate();
     const handleNext = () => {
        const trimmedPrice = productPrice.trim();

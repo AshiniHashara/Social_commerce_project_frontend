@@ -7,7 +7,10 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'; 
 
 const Post_Product03 = () => {
-    const[ productName, setProductName] =useState("");
+    //const[ productName, setProductName] =useState("");
+    const[ productName, setProductName] =useState(() => {
+        return localStorage.getItem("ProductName") || "";
+    });
     const navigate = useNavigate();
     const handleNext = () => {
         console.log("Hello ");

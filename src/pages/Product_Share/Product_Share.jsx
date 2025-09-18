@@ -20,7 +20,7 @@ const Product_Share = () => {
 const [subCategoryName, setSubCategoryName] = useState("");
 
 useEffect(() => {
-  // Fetch all categories once
+  
   axios.get("http://localhost:8080/api/category")
     .then((res) => {
       setCategories(res.data);
@@ -39,7 +39,7 @@ useEffect(() => {
 
   const subCatId = response.data.subcategory_id;
 
-  // Find the category that contains this subcategory
+  
   const foundCategory = categories.find(cat =>
     cat.subCategory.some(sub => sub.subCatId === subCatId)
   );
@@ -66,6 +66,19 @@ useEffect(() => {
     );
   }
 
+  
+const formatDateTime = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleString("en-GB", {
+    year: "numeric",
+    month: "short", 
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
+
+
   const handleAddMargin = async () => {
     if (!margin || isNaN(margin) || parseFloat(margin) <= 0) {
     Swal.fire({
@@ -83,7 +96,7 @@ useEffect(() => {
       return;
     }
 
-    // ✅ Decode token and check role
+    
     const decoded = jwtDecode(token);
     const role = decoded.Roles;
     console.log("Decoded token:", decoded);
@@ -115,7 +128,7 @@ useEffect(() => {
     //alert("Margin entry added successfully!");
     const retailerId = response.data.retailerId;
 
-    // ✅ Encode the IDs using Base64
+    
     const encodedProductId = btoa(product.id.toString());
     const encodedRetailerId = btoa(retailerId.toString());
 
@@ -149,7 +162,7 @@ useEffect(() => {
   <div className="product-margin-content">
 
     <div className="product-layout-wrapper">
-      {/* LEFT SIDE - Carousel + Margin */}
+     
       <div className="left-section">
         {product.imageID && product.imageID.length > 0 && (
           <Carousel
@@ -187,28 +200,29 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* RIGHT SIDE - Product Info */}
+     
       <div className="right-section">
         <span>{categoryName}</span>
         <h1>{product.name}</h1>
         <h5>{subCategoryName}</h5>
         <p>{product.description}</p>
-        <p>{product.quantity}</p>
-
+       
         <div className="product-price">
           <span>{"$" + product.price}</span>
-          <button
-            className={`cart-btn ${!product.available ? "disabled-btn" : ""}`}
-            disabled={!product.available}
-          >
-            {product.available ? "Add to cart" : "Out of Stock"}
-          </button>
+         
+          {/* <button>
+  {product.quantity <= 0 
+    ? "Out of Stock" 
+    : `Available: ${product.quantity}`}
+</button> */}
+
           <h6>
             Stock Available: <i style={{ color: "green", fontWeight: "bold" }}>{product.quantity}</i>
           </h6>
           <p className="release-date">
             <h6>Product listed on:</h6>
-            <i>{product.releaseDate}</i>
+            {/* <p>{product.release_date}</p> */}
+            <i>{formatDateTime(product.release_date)}</i>
           </p>
         </div>
       </div>

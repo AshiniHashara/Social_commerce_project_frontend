@@ -81,6 +81,14 @@ Swal.fire({
   icon: "success",
   draggable: true
 });
+
+    localStorage.removeItem("uploadedImages");
+    localStorage.removeItem("selectedCategory");
+    localStorage.removeItem("selectedSubCategory");
+    localStorage.removeItem("ProductName");
+    localStorage.removeItem("ProductPrice");
+    localStorage.removeItem("ProductDescription");
+
     //alert("Product and images uploaded successfully!");
     navigate("/home"); 
 

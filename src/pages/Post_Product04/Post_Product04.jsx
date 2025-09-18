@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'; 
 
 const Post_Product04 = () => {
-    const[ productDescription, setProductDescription] =useState("");
+    const[ productDescription, setProductDescription] =useState(() => {
+            return localStorage.getItem("ProductDescription") || "";
+        });
     const navigate = useNavigate();
     const handleNext = () => {
         if(productDescription.trim()===""){

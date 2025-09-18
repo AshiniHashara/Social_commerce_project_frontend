@@ -18,7 +18,7 @@ const Product_Share = () => {
 
   const totalPrice = localStorage.getItem("totalPrice");
 
-  // ✅ Decode them safely
+  
   const productId = atob(encodedProductId);
   const retailerId = atob(encodedRetailerId);
 
@@ -53,7 +53,7 @@ useEffect(() => {
 
   const subCatId = response.data.subcategory_id;
 
-  // Find the category that contains this subcategory
+  
   const foundCategory = categories.find(cat =>
     cat.subCategory.some(sub => sub.subCatId === subCatId)
   );
@@ -85,7 +85,7 @@ useEffect(() => {
       <div className="containers">
   <div className="product-content-wrapper">
     
-    {/* LEFT SIDE – Image Carousel */}
+    
     <div className="left-column">
       {product.imageID && product.imageID.length > 0 && (
         <Carousel
@@ -109,7 +109,7 @@ useEffect(() => {
       )}
     </div>
 
-    {/* RIGHT SIDE – Product Details */}
+   
     <div className="right-column">
       <div className="product-description">
         <span>{categoryName}</span>

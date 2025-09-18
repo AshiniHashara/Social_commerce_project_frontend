@@ -89,5 +89,9 @@ color: #dadce0;
   height: 600px;
   padding: 15px;
 }
+.input-error {
+  color: red;
+  margin: 0px;
+}
 
 

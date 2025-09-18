@@ -20,8 +20,8 @@ const Navbar = () => {
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("username"); // clear stored username
-        localStorage.removeItem("token");    // optional: clear token
+        localStorage.removeItem("username"); 
+        localStorage.removeItem("token");    
         setUsername(null);
         navigate("/login");
     };
